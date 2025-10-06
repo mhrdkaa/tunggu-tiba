@@ -1,0 +1,18 @@
+services:
+  pkm:
+    build: .
+    container_name: pkm
+    volumes:
+      - ./:/var/www/html  # Mount seluruh project
+      - ./storage/:/var/www/html/storage:rw  # Pastikan storage writable
+    networks:
+      - pkm_tunggutiba
+    ports:
+      - 9001:80
+    environment:
+      - APP_ENV=production
+      - APP_DEBUG=false
+
+networks:
+  pkm_tunggutiba:
+    driver: bridge
